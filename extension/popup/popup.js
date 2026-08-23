@@ -4,7 +4,13 @@
  * Local Storage persistence, and Tab Autofill messaging.
  */
 
-const API_BASE_URL = "http://localhost:8000/api/v1";
+const API_CANDIDATE_URLS = [
+  "http://127.0.0.1:8008/api/v1",
+  "http://localhost:8008/api/v1",
+  "http://127.0.0.1:8000/api/v1",
+  "http://localhost:8000/api/v1"
+];
+let activeApiUrl = API_CANDIDATE_URLS[0];
 
 // Default Sample Data
 const SAMPLE_CANDIDATE = {
@@ -104,16 +110,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Check if local FastAPI backend is active
 async function checkBackendHealth() {
-  try {
-    const res = await fetch(`${API_BASE_URL}/health`, { method: "GET" });
-    if (res.ok) {
-      isBackendOnline = true;
-      backendStatus.className = "status-badge online";
-      backendStatus.innerHTML = `<span class="status-dot"></span><span>Backend Online</span>`;
-      return;
+  for (const url of API_CANDIDATE_URLS) {
+    try {
+      const res = await fetch(`${url}/health`, { method: "GET" });
+      if (res.ok) {
+        activeApiUrl = url;
+        isBackendOnline = true;
+        backendStatus.className = "status-badge online";
+        backendStatus.innerHTML = `<span class="status-dot"></span><span>Backend Online (${url.includes("8008") ? "8008" : "8000"})</span>`;
+        return;
+      }
+    } catch (e) {
+      // Continue searching
     }
-  } catch (e) {
-    // Backend offline, fallback to standalone
   }
   isBackendOnline = false;
   backendStatus.className = "status-badge standalone";
@@ -202,7 +211,7 @@ async function processFile(file) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`${API_BASE_URL}/parse`, {
+      const response = await fetch(`${activeApiUrl}/parse`, {
         method: "POST",
         body: formData
       });

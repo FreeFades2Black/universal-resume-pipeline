@@ -110,20 +110,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function handleFile(file) {
   // Try sending to backend API if running
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    const res = await fetch("http://localhost:8000/api/v1/parse", {
-      method: "POST",
-      body: formData
-    });
-    if (res.ok) {
-      const payload = await res.json();
-      loadPayload(payload);
-      return;
+  const candidateUrls = ["http://127.0.0.1:8008/api/v1/parse", "http://localhost:8008/api/v1/parse", "http://127.0.0.1:8000/api/v1/parse", "http://localhost:8000/api/v1/parse"];
+  for (const endpoint of candidateUrls) {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: formData
+      });
+      if (res.ok) {
+        const payload = await res.json();
+        loadPayload(payload);
+        return;
+      }
+    } catch (err) {
+      // Continue trying
     }
-  } catch (err) {
-    console.warn("Backend API not reachable, running client reader:", err);
   }
 
   // Client reader fallback
