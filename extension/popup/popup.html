@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Resume Injector</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-badge">⚡</div>
+        <div class="brand-text">
+          <h1>Universal Resume</h1>
+          <span class="subtext">Extraction & Injection Engine</span>
+        </div>
+      </div>
+      <div id="backend-status" class="status-badge checking" title="Checking local backend connection">
+        <span class="status-dot"></span>
+        <span class="status-label">Checking...</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Drop Zone Area (Shown when no resume is loaded) -->
+      <section id="drop-zone-section" class="drop-zone-card">
+        <div id="drop-zone" class="drop-zone">
+          <input type="file" id="file-input" accept=".pdf,.docx,.txt,.json" style="display: none;">
+          <div class="drop-icon">📄</div>
+          <div class="drop-prompt">
+            <strong>Drop Resume Here</strong>
+            <p>PDF, DOCX, TXT, or JSON</p>
+          </div>
+          <button id="browse-btn" class="btn btn-secondary btn-sm" type="button">Browse Files</button>
+        </div>
+        
+        <div class="sample-actions">
+          <span>Or try sample:</span>
+          <button id="load-sample-btn" class="btn-link" type="button">Load William Free Hall Sample</button>
+        </div>
+      </section>
+
+      <!-- Profile View Area (Shown when resume is loaded) -->
+      <section id="profile-section" class="profile-card" style="display: none;">
+        <div class="candidate-summary">
+          <div class="avatar-circle" id="candidate-avatar">WH</div>
+          <div class="candidate-meta">
+            <h2 id="candidate-name">Candidate Name</h2>
+            <p id="candidate-headline">Cloud Engineer / Tech Lead</p>
+            <div class="contact-chips">
+              <span id="candidate-email" class="chip">email@example.com</span>
+              <span id="candidate-phone" class="chip">555-019-2834</span>
+              <span id="candidate-location" class="chip">Niceville, FL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action Trigger -->
+        <div class="primary-action-wrap">
+          <button id="autofill-btn" class="btn btn-primary btn-block" type="button">
+            <span class="btn-icon">🚀</span>
+            <strong>Autofill Current Application Tab</strong>
+          </button>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="tab-personal" type="button">Personal</button>
+          <button class="tab-btn" data-tab="tab-experience" type="button">Experience</button>
+          <button class="tab-btn" data-tab="tab-education" type="button">Education</button>
+          <button class="tab-btn" data-tab="tab-skills" type="button">Skills (<span id="skills-count">0</span>)</button>
+          <button class="tab-btn" data-tab="tab-json" type="button">JSON</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-content-container">
+          <!-- Personal Tab -->
+          <div id="tab-personal" class="tab-pane active">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" id="edit-first-name" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="edit-last-name" class="form-input">
+              </div>
+              <div class="form-group col-span-2">
+                <label>Email</label>
+                <input type="email" id="edit-email" class="form-input">
+              </div>
+              <div class="form-group col-span-2">
+                <label>Phone</label>
+                <input type="text" id="edit-phone" class="form-input">
+              </div>
+              <div class="form-group col-span-2">
+                <label>Location</label>
+                <input type="text" id="edit-location" class="form-input">
+              </div>
+              <div class="form-group col-span-2">
+                <label>LinkedIn URL</label>
+                <input type="text" id="edit-linkedin" class="form-input">
+              </div>
+              <div class="form-group col-span-2">
+                <label>GitHub URL</label>
+                <input type="text" id="edit-github" class="form-input">
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Tab -->
+          <div id="tab-experience" class="tab-pane">
+            <div id="experience-list" class="item-list"></div>
+          </div>
+
+          <!-- Education Tab -->
+          <div id="tab-education" class="tab-pane">
+            <div id="education-list" class="item-list"></div>
+          </div>
+
+          <!-- Skills Tab -->
+          <div id="tab-skills" class="tab-pane">
+            <div id="skills-tags" class="tag-cloud"></div>
+          </div>
+
+          <!-- JSON Tab -->
+          <div id="tab-json" class="tab-pane">
+            <div class="json-actions">
+              <button id="copy-json-btn" class="btn btn-secondary btn-sm" type="button">📋 Copy JSON</button>
+              <button id="save-json-btn" class="btn btn-secondary btn-sm" type="button">💾 Save Edits</button>
+            </div>
+            <textarea id="raw-json-editor" class="code-editor" spellcheck="false"></textarea>
+          </div>
+        </div>
+
+        <!-- Footer Card Actions -->
+        <div class="card-footer-actions">
+          <button id="replace-resume-btn" class="btn btn-outline btn-sm" type="button">🔄 Replace Resume</button>
+          <button id="clear-data-btn" class="btn btn-danger-outline btn-sm" type="button">🗑️ Clear Data</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" style="display: none;">
+      <span id="toast-message">Message</span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

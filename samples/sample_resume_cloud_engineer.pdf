@@ -1,0 +1,65 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1982 >>
+stream
+BT
+/F1 12 Tf
+50 750 Td
+14 TL
+(William Free Hall | Technical Lead & Cloud Engineer) '
+(free@example.com | \(555\) 019-2834 | Niceville, FL 32578) '
+(https://linkedin.com/in/williamfreehall | https://github.com/FreeFades2Black) '
+(PROFESSIONAL SUMMARY) '
+(Senior Cloud & DevOps Engineer with 6+ years of experience engineering high-scale multi-cloud architectures, Terraform infrastructure-as-code, Databricks Delta pipelines, and automated zero-downtime deployment workflows.) '
+(TECHNICAL SKILLS) '
+(Languages: Python, Go, SQL, Bash, PowerShell, JavaScript, TypeScript) '
+(Cloud & DevOps: AWS, GCP, Azure, Terraform, Docker, Kubernetes, GitHub Actions, Linux, Databricks, PySpark, Prometheus, Grafana) '
+(Frameworks & Databases: FastAPI, Flask, PostgreSQL, Redis, Delta Lake, Snowflake, REST API) '
+(WORK EXPERIENCE) '
+(Technical Lead & Senior Cloud Engineer at Tech Solutions Inc.) '
+(2024 - Present | Remote / Florida) '
+(- Architected enterprise multi-cloud infrastructure spanning AWS, GCP, and Databricks using reusable Terraform modules.) '
+(- Deployed real-time automated data ingestion pipelines handling 50M+ daily records with zero downtime.) '
+(- Designed CI/CD release automation with GitHub Actions reducing deployment cycle time by 65%.) '
+(Senior DevOps Engineer at CloudScale Innovations) '
+(2021 - 2024 | Atlanta, GA) '
+(- Engineered resilient Kubernetes \(EKS/GKE\) clusters running containerized microservices with auto-scaling.) '
+(- Automated compliance, vulnerability scanning, and multi-region backup disaster recovery runbooks.) '
+(- Managed PostgreSQL and Redis caching layers improving query response times by 40%.) '
+(EDUCATION) '
+(University of Florida) '
+(Bachelor of Science in Computer Science & Information Technology) '
+(2017 - 2021 | GPA: 3.85) '
+(CERTIFICATIONS) '
+(- AWS Certified Solutions Architect - Professional \(2024\)) '
+(- Certified Kubernetes Administrator - CKA \(2023\)) '
+(- Databricks Certified Data Engineer Associate \(2023\)) '
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000002281 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2351
+%%EOF

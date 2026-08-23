@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Resume Extraction & Injection Testbench</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="testbench-container">
+    <!-- Header -->
+    <header class="testbench-header">
+      <div class="brand">
+        <div class="logo">⚡</div>
+        <div>
+          <h1>Universal Resume Pipeline</h1>
+          <p>Drop Zone & Form Autofill Interactive Testbench</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-primary">v1.0.0</span>
+        <span id="backend-indicator" class="badge badge-success">API Ready</span>
+      </div>
+    </header>
+
+    <!-- 2-Column Split: Parser Drop Zone vs Mock ATS Job Application -->
+    <div class="split-view">
+      <!-- Left Column: The Drop Zone & Parser -->
+      <section class="panel panel-left">
+        <div class="panel-header">
+          <h2>1. The Drop Zone (Parser)</h2>
+          <span class="panel-subtitle">Drop a PDF, DOCX, TXT, or JSON resume</span>
+        </div>
+
+        <div id="drop-area" class="drop-area">
+          <input type="file" id="file-selector" accept=".pdf,.docx,.txt,.json" style="display:none;">
+          <div class="drop-icon">📄</div>
+          <h3>Drag & Drop Resume File</h3>
+          <p>or click to browse from your device</p>
+          <div class="button-row">
+            <button id="browse-file-btn" class="btn btn-secondary">Select File</button>
+            <button id="demo-sample-btn" class="btn btn-accent">Load Demo Candidate</button>
+          </div>
+        </div>
+
+        <div class="meta-card" id="parsed-summary" style="display:none;">
+          <div class="candidate-header">
+            <div>
+              <h3 id="display-name">Candidate Name</h3>
+              <span id="display-title" class="text-cyan">Headline</span>
+            </div>
+            <button id="inject-mock-btn" class="btn btn-success">⚡ Autofill Mock Form</button>
+          </div>
+
+          <div class="details-grid">
+            <div><strong>Email:</strong> <span id="display-email"></span></div>
+            <div><strong>Phone:</strong> <span id="display-phone"></span></div>
+            <div><strong>Location:</strong> <span id="display-location"></span></div>
+            <div><strong>LinkedIn:</strong> <span id="display-linkedin"></span></div>
+          </div>
+        </div>
+
+        <div class="json-panel">
+          <div class="json-header">
+            <span>Normalized JSON Payload (Universal Schema):</span>
+            <button id="copy-json" class="btn btn-sm btn-outline">Copy JSON</button>
+          </div>
+          <pre id="json-display" class="json-viewer">// Drop a resume to view normalized JSON payload...</pre>
+        </div>
+      </section>
+
+      <!-- Right Column: Mock ATS Application Form -->
+      <section class="panel panel-right">
+        <div class="panel-header">
+          <h2>2. The Injection Target (Mock ATS Form)</h2>
+          <span class="panel-subtitle">Simulates Greenhouse / Lever / Workday Job Application</span>
+        </div>
+
+        <form id="mock-ats-form" class="ats-form">
+          <div class="ats-banner">
+            <span class="company-tag">Acme Cloud Systems</span>
+            <h3>Senior Infrastructure & Cloud Architect</h3>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first_name">First Name *</label>
+              <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name *</label>
+              <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Current Location</label>
+            <input type="text" id="location" name="location" placeholder="City, State, Country">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="urls[LinkedIn]">LinkedIn URL</label>
+              <input type="text" id="urls[LinkedIn]" name="urls[LinkedIn]" placeholder="https://linkedin.com/in/username">
+            </div>
+            <div class="form-group">
+              <label for="urls[GitHub]">GitHub URL</label>
+              <input type="text" id="urls[GitHub]" name="urls[GitHub]" placeholder="https://github.com/username">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company">Current / Most Recent Company</label>
+              <input type="text" id="company" name="org" placeholder="Employer Name">
+            </div>
+            <div class="form-group">
+              <label for="title">Current Job Title</label>
+              <input type="text" id="title" name="title" placeholder="Job Title">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="school">University / College</label>
+            <input type="text" id="school" name="school" placeholder="Degree & University">
+          </div>
+
+          <div class="form-group">
+            <label for="skills">Key Skills & Proficiencies</label>
+            <input type="text" id="skills" name="skills" placeholder="e.g. Python, AWS, Terraform, Docker">
+          </div>
+
+          <div class="form-group">
+            <label for="comments">Summary / Cover Note</label>
+            <textarea id="comments" name="comments" rows="3" placeholder="Tell us about yourself..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="work_auth">Authorized to work?</label>
+              <select id="work_auth" name="work_auth">
+                <option value="">Select...</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sponsorship">Require Sponsorship?</label>
+              <select id="sponsorship" name="sponsorship">
+                <option value="">Select...</option>
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <button type="reset" class="btn btn-outline">Reset Form</button>
+            <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); alert('Application Submitted in Demo!');">Submit Application</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

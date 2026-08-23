@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "personal_information": {
+    "first_name": "William",
+    "last_name": "Hall",
+    "full_name": "William Free Hall",
+    "email": "free@example.com",
+    "phone": "555-019-2834",
+    "headline": "Lead Multi-Cloud & Data Infrastructure Architect",
+    "summary": "Proven track record designing production data lakes, serverless computing modules, and automated cloud workflows across AWS and Databricks.",
+    "location": "Niceville, FL 32578, USA",
+    "city": "Niceville",
+    "state": "FL",
+    "country": "United States",
+    "postal_code": "32578",
+    "linkedin_url": "https://linkedin.com/in/williamfreehall",
+    "github_url": "https://github.com/FreeFades2Black",
+    "portfolio_url": "https://github.com/FreeFades2Black"
+  },
+  "work_history": [
+    {
+      "title": "Principal Data & Cloud Engineer",
+      "company": "Enterprise Cloud Corp",
+      "location": "Remote",
+      "start_date": "2024-01",
+      "end_date": "Present",
+      "is_current": true,
+      "description": "Architect of enterprise Lakehouse telemetry engines and multi-cloud infrastructure.",
+      "highlights": [
+        "Built Unity Catalog bronze/silver/gold Delta pipelines with automated optimize and vacuum.",
+        "Created custom Terraform modules for AWS S3, DynamoDB, Lambda, and IAM zero-trust policies."
+      ],
+      "technologies": ["Python", "Databricks", "Terraform", "AWS", "PySpark", "Delta Lake"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Florida",
+      "degree": "Bachelor of Science",
+      "field_of_study": "Computer Science",
+      "start_date": "2017",
+      "end_date": "2021",
+      "gpa": "3.85"
+    }
+  ],
+  "skills": [
+    "Python", "AWS", "Terraform", "Databricks", "PySpark", "Delta Lake",
+    "Docker", "Kubernetes", "FastAPI", "SQL", "CI/CD", "Linux", "Git"
+  ],
+  "certifications": [
+    {
+      "name": "AWS Solutions Architect Professional",
+      "issuer": "Amazon Web Services",
+      "issue_date": "2024"
+    }
+  ],
+  "preferences": {
+    "authorized_to_work": "Yes",
+    "requires_sponsorship": "No",
+    "veteran_status": "I am not a protected veteran",
+    "notice_period": "2 weeks"
+  },
+  "metadata": {
+    "source_filename": "sample_resume_data_engineer.json",
+    "parser_engine": "pre_formatted_universal_json"
+  }
+}
