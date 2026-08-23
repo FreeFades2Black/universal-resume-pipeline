@@ -255,7 +255,8 @@ class RegexNormalizer:
 
         for line in lines:
             date_match = re.search(date_pattern, line, re.IGNORECASE)
-            has_role_keyword = any(kw in line.lower() for kw in ["engineer", "lead", "developer", "architect", "manager", "specialist", "consultant", "analyst", "director", "administrator"])
+            is_bullet = line.startswith(("-", "•", "*", "–", "—"))
+            has_role_keyword = (not is_bullet) and any(kw in line.lower() for kw in ["engineer", "lead", "developer", "architect", "manager", "specialist", "consultant", "analyst", "director", "administrator"])
             
             # If this line is just a date span (and optionally location) for the preceding job title
             if date_match and current_exp and not current_exp.start_date and not has_role_keyword:
@@ -273,7 +274,7 @@ class RegexNormalizer:
                 continue
 
             # If line is a new job title / company header
-            if has_role_keyword or (date_match and not line.startswith(("-", "•", "*", "–"))):
+            if (has_role_keyword or (date_match and not is_bullet)) and len(line) < 120:
                 if current_exp and (current_exp.title or current_exp.company):
                     experiences.append(current_exp)
                 
