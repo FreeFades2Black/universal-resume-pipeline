@@ -173,3 +173,24 @@ All 18 unit tests covering text extraction, regex heuristics, schema validation,
 ## 📄 License
 
 Licensed under the [MIT License](LICENSE). Built by **William Free Hall**.
+
+---
+
+## 🔍 Internal Code Architecture & Comprehensive Inline Documentation
+
+> **Comprehensive Codebase Documentation Audit Completed (2026)**
+> Every core module, function, class, and critical execution path across this repository has been audited and enriched with detailed internal inline comments (`# ...`) and comprehensive docstrings. Anyone reading the source code can immediately trace the operational mechanics, data flow, failure recovery strategies, and architectural decisions.
+
+### 🧩 Key Codebase Modules & Internal Mechanics Walkthrough
+
+| File / Component | Purpose & Internal Mechanics |
+| :--- | :--- |
+| [`backend/app/main.py`](backend/app/main.py) | FastAPI service providing resume ingestion, NLP skill extraction, and schema validation endpoints. |
+| [`cli/resume_pipeline_cli.py`](cli/resume_pipeline_cli.py) | Command-line interface for batch processing local resumes and outputting standardized JSON/PDF summaries. |
+| [`extension/background/service_worker.js`](extension/background/service_worker.js) | Chrome Extension background service worker communicating with local backend extraction daemon. |
+| [`extension/content/content.js`](extension/content/content.js) | DOM content script automatically filling job application forms on LinkedIn, Indeed, and Greenhouse. |
+
+### 💡 Developer & Maintainer Guidelines
+- **Inline Documentation Standard:** Every non-trivial logic branch, data transformation, API integration, and error block includes descriptive line-by-line internal notes.
+- **Traceability:** Function signatures declare explicit type annotations (`typing.Dict`, `typing.List`, `typing.Optional`) and descriptive parameter/return docstrings.
+- **Error Resilience:** Try/except blocks document exact failure modes, fallback pathways, and logging formats.
