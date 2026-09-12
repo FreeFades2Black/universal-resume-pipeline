@@ -1,0 +1,22 @@
+groups:
+  - name: resume_pipeline_alerts
+    rules:
+      - alert: AutofillFailureSpike
+        expr: sum(rate(autofill_failures_total[5m])) > 3
+        for: 2m
+        labels:
+          severity: warning
+          tier: browser-automation
+        annotations:
+          summary: "Spike in ATS application autofill failures"
+          description: "Candidate form filling failing on target ATS domain. Inspect selector mappings."
+
+      - alert: ResumeParseLatencyHigh
+        expr: histogram_quantile(0.95, rate(resume_parse_duration_seconds_bucket[5m])) > 5.0
+        for: 5m
+        labels:
+          severity: warning
+          tier: ocr-engine
+        annotations:
+          summary: "Resume parsing latency p95 > 5.0s"
+          description: "Spatial bounding box extraction encountering complex unindexed PDF geometries."

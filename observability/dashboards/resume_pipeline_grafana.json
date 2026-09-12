@@ -1,0 +1,70 @@
+{
+  "title": "Universal Resume Pipeline & Autofill Observability",
+  "schemaVersion": 38,
+  "panels": [
+    {
+      "title": "Resume Parse Duration (p95)",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(resume_parse_duration_seconds_bucket[5m]))",
+          "legendFormat": "p95 Duration (s)"
+        }
+      ]
+    },
+    {
+      "title": "Autofill Form Submission Success (%)",
+      "type": "gauge",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "avg(autofill_success_ratio) * 100",
+          "legendFormat": "% Success"
+        }
+      ]
+    },
+    {
+      "title": "Two-Column Layout Detection Accuracy",
+      "type": "stat",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "sum(pdf_twocolumn_layouts_parsed_total)",
+          "legendFormat": "Parsed Layouts"
+        }
+      ]
+    },
+    {
+      "title": "LLM Extraction Validation Errors",
+      "type": "timeseries",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "targets": [
+        {
+          "expr": "sum(rate(llm_schema_validation_errors_total[5m]))",
+          "legendFormat": "Schema Errors / s"
+        }
+      ]
+    }
+  ]
+}
