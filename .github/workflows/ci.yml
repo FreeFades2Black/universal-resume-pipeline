@@ -11,6 +11,7 @@ jobs:
   test-and-validate:
     name: Run Test Suite & Linting
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       matrix:
         python-version: ['3.11', '3.12']
@@ -38,6 +39,7 @@ jobs:
   package-extension:
     name: Package Manifest V3 Chrome Extension
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: test-and-validate
     steps:
       - name: Checkout Code
