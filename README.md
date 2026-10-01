@@ -72,3 +72,13 @@ tests/test_schema.py ....                                                 [100%]
 
 * **Handwritten Annotation OCR:** Current extractor processes digital PDFs and scanned machine text; handwritten margin notes are discarded. Fine-tuned TrOCR model integration is scheduled for Q4.
 * **Multi-Page Workday Wizard State Replay:** Multi-page application flows currently step sequentially; automated speculative pre-filling of subsequent wizard pages is planned for Q1 2027.
+
+## Automated CI Maintenance Log
+<!-- START_AGENT_MAINTENANCE_LOG -->
+#### Maintenance Run: `2026-10-01 20:59:12 UTC`
+- `.github/workflows/ci.yml`: Upgrade actions/checkout from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4]
+- `.github/workflows/ci.yml`: Upgrade actions/setup-python from v5 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4]
+- `.github/workflows/ci.yml`: Upgrade actions/upload-artifact from v4 to v7 for security & performance. [Research: RCSB PDB AI Help Desk: retrieval-augmented generation for protein structure deposition support (OpenAlex / Global University Research)] [NIST SP 800-218 PW.4]
+- `.github/workflows/ci.yml`: Enforce timeout-minutes: 10 to kill hung processes and prevent runaway billing (CISA & FinOps).
+
+<!-- END_AGENT_MAINTENANCE_LOG -->

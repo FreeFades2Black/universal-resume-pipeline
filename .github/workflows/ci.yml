@@ -11,16 +11,17 @@ jobs:
   test-and-validate:
     name: Run Test Suite & Linting
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     strategy:
       matrix:
         python-version: ['3.11', '3.12']
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
@@ -38,10 +39,11 @@ jobs:
   package-extension:
     name: Package Manifest V3 Chrome Extension
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: test-and-validate
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Archive Extension Directory
         run: |
@@ -49,7 +51,7 @@ jobs:
           zip -r ../universal-resume-autofill-extension.zip ./*
 
       - name: Upload Extension Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: universal-resume-autofill-extension
           path: universal-resume-autofill-extension.zip
